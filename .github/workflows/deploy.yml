@@ -37,5 +37,6 @@ jobs:
             npm install --production
 
             # Restart app with PM2 (use src/app.js instead of app.js at root)
+            node app.js
             pm2 restart app || pm2 start src/app.js --name app
             pm2 save
