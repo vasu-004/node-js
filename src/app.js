@@ -1,16 +1,13 @@
-const express = require("express");
-const routes = require("./routes");
+// app.js
+const http = require("http");
 
-const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 
-// Middleware
-app.use(express.json());
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { "Content-Type": "text/plain" });
+  res.end("Hello! Your Node.js app is running 🚀\n");
+});
 
-// Routes
-app.use("/", routes);
-
-// Start Server
-app.listen(PORT, () => {
-  console.log(`🚀 Server is running on http://localhost:${PORT}`);
+server.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
 });
