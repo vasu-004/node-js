@@ -33,7 +33,7 @@ const server = http.createServer((req, res) => {
     </head>
     <body>
       <h1>Hello!</h1>
-      <p>Your Node.js app is running <span class="emoji">🚀</span></p>
+      <p>Your Node.js app is running 🚀</span></p>
     </body>
     </html>
   `);
