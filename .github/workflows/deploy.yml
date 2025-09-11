@@ -21,6 +21,6 @@ jobs:
           password: ${{ secrets.EC2_PASSWORD }} # Your EC2 password
           port: 22
           script: |
-            cd ~/node-js-app || git clone https://github.com/vasu-004/node-js.git node-js-app
+            git clone https://github.com/vasu-004/node-js.git 
             cd node-js-app
            
