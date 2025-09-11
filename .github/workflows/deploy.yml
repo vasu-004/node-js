@@ -22,5 +22,10 @@ jobs:
           port: 22
           script: |
             git clone https://github.com/vasu-004/node-js.git 
+            cd node-js
+            sudo npm install
+            sudo npm start
+
+            echo "🚀 Deployment completed successfully!"
             
            
