@@ -23,6 +23,4 @@ jobs:
           script: |
             cd ~/node-js-app || git clone https://github.com/vasu-004/node-js.git node-js-app
             cd node-js-app
-            git pull origin main
-            npm install --production
-            pm2 restart app || pm2 start app.js --name app
+           
