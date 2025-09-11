@@ -3,7 +3,7 @@ name: Deploy Node.js App to EC2
 on:
   push:
     branches:
-      - main   
+      - main   # Deploy only when pushing to main branch
 
 jobs:
   deploy:
@@ -13,29 +13,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Deploy to EC2 (Amazon Linux)
+      - name: Deploy to EC2 using password
         uses: appleboy/ssh-action@v0.1.6
         with:
-          host: ${{ secrets.EC2_HOST }}         
-          username: ${{ secrets.EC2_USER }}     
-          password: ${{ secrets.EC2_PASSWORD }}  
+          host: ${{ secrets.EC2_HOST }}      # EC2 Public IP
+          username: ${{ secrets.EC2_USER }}  # usually "ubuntu" or "ec2-user"
+          password: ${{ secrets.EC2_PASSWORD }} # Your EC2 password
           port: 22
           script: |
-            
-            sudo yum update -y
-            sudo amazon-linux-extras enable nodejs18
-            sudo yum install -y nodejs git
-            sudo npm install -g pm2
-
-            
-            if [ ! -d "node-js-app" ]; then
-              git clone https://github.com/vasu-004/node-js.git node-js-app
-            fi
-
+            cd ~/node-js-app || git clone https://github.com/vasu-004/node-js.git node-js-app
             cd node-js-app
             git pull origin main
             npm install --production
-
-            
             pm2 restart app || pm2 start app.js --name app
-            pm2 save
